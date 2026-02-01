@@ -1,55 +1,40 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# AI-Native Todo Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Correctness First
+All implementations must prioritize correctness and deterministic behavior over optimization. Code should exhibit predictable, testable behavior with no randomness or unpredictable dependencies. Each phase must function reliably before advancing to complexity.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Phased Evolution
+System development follows a progressive five-phase approach: Console → Web → AI → Local Kubernetes → Cloud Deployment. Each phase builds cleanly upon the previous without requiring refactoring of core logic. Features added in later phases must not compromise earlier phase functionality.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Test-First (NON-NEGOTIABLE)
+Test-driven development is mandatory: Tests written → Requirements verified → Tests fail → Implementation follows. Red-Green-Refactor cycle strictly enforced for all code changes. Each phase must include comprehensive test coverage before advancement.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Separation of Concerns
+Clear architectural boundaries between UI, business logic, data storage, and AI components. Modules must be independently testable and maintainable. Frontend, backend, and AI logic must communicate through well-defined interfaces and contracts.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. AI-Native Readiness
+All system designs must accommodate future AI integration points. Architecture decisions should consider how AI components will interact with existing systems. Maintain clean data models and structured interfaces that support AI tool consumption.
 
-### [PRINCIPLE_6_NAME]
+### VI. Infrastructure as Code
+All deployment configurations must be version-controlled and reproducible. Kubernetes manifests, Helm charts, and infrastructure definitions must be maintained as code. Deployments must be idempotent and support rollback capabilities.
 
+## Additional Constraints
+- Phase I: Pure in-memory Python with standard library only (no external dependencies)
+- Phase II: Type-safe API contracts using SQLModel and FastAPI
+- Phase III: Deterministic AI tool usage with safe prompt boundaries
+- Phase IV: Container-first design with Docker and Kubernetes orchestration
+- Phase V: Event-driven architecture with scalable, resilient service communication
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+- All code changes require associated tests
+- Pull requests must pass all existing tests before merging
+- Code reviews verify adherence to architectural principles
+- Branch-per-feature workflow with descriptive commit messages
+- Clean commit history with logical atomic changes
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution governs all development decisions for the AI-Native Todo Application. All team members must follow these principles. Deviations require explicit amendment to this document with justification. Architecture decisions must align with phased evolution strategy.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-29 | **Last Amended**: 2026-01-29
